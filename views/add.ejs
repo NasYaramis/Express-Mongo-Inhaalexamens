@@ -14,6 +14,11 @@
      <tr><td>Naam student: </td><td><input type='text' name='name'></td></tr>
      <tr><td>Examen : </td><td><input type='text' name='description'></td></tr>
      <tr><td>Reden : </td><td><input type='text' name='reason' size=100></td></tr>
+     <tr><td><p>Datum: <span id="datum" name= 'datum'></span></p>
+     <script>
+        var dt = new Date();
+          document.getElementById("datum").innerHTML = dt.toLocaleDateString();
+      </script></td></tr>
      <tr><td><button type='submit'>Add</button></td></tr>
    </table>
   </form>
