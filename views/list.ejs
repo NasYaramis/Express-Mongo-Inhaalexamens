@@ -9,12 +9,12 @@
   <h1>Alle inhaalexamens</h1>
  <br/><br/>
   <ul class='inhaalexamen'>
-  <% for(var i=0; i < inhaalexamens.length; i++) {%>
+  <% for(var i=0; i < inhaal.length; i++) {%>
     <li class='inhaalexamen'>
-      <span><b>Naam student : </b><%= inhaalexamens[i].name %></span><br />
-      <span><b>Examen : </b><%= inhaalexamens[i].description %></span><br />
-      <span><b>Reden : </b><%= inhaalexamens[i].reason %></span><br />
-      <span><b>Datum : </b><%= inhaalexamens[i].datum %></span><br />
+      <span><b>Naam student : </b><%= inhaal[i].name %></span><br />
+      <span><b>Examen : </b><%= inhaal[i].description %></span><br />
+      <span><b>Reden : </b><%= inhaal[i].reason %></span><br />
+      <span><b>Datum : </b><%= inhaal[i].datum %></span><br />
     </li>
   <% } %>
   </ul>
