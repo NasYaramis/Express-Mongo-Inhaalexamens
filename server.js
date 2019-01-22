@@ -5,9 +5,9 @@ const MongoClient = require('mongodb').MongoClient
 
 var db;
 
-MongoClient.connect('mongodb://localhost:27017/inhaalexamens',  { useNewUrlParser: true }, (err, database) => {
+MongoClient.connect('mongodb://localhost:27017/examen',  { useNewUrlParser: true }, (err, database) => {
   if (err) return console.log(err)
-  db = database.db('inhaalexamens')
+  db = database.db('examen')
   app.listen(process.env.PORT || 3000, () => {
     console.log('Listening on port 3000')
   })
@@ -25,9 +25,9 @@ app.get('/', (req, res) => {
 
 // List all inhaalexamens
 app.get('/list', (req, res) => {
-  db.collection('inhaalexamens').find().toArray((err, result) => {
+  db.collection('inhaal').find().toArray((err, result) => {
     if (err) return console.log(err)
-    res.render('list.ejs', { inhaalexamens: result })
+    res.render('list.ejs', { inhaal: result })
   })
 })
 
@@ -38,7 +38,7 @@ app.get('/add', (req, res) => {
 
 // Add a inhaalexamen to the db
 app.post('/add', (req, res) => {
-  db.collection('inhaalexamens').insertOne(req.body, (err, result) => {
+  db.collection('inhaal').insertOne(req.body, (err, result) => {
     if (err) return console.log(err)
      res.redirect('/list')
   })
