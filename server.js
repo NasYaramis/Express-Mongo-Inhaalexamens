@@ -4,10 +4,12 @@ const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
 
 var db;
+var mysort;
 
 MongoClient.connect('mongodb://localhost:27017/examen',  { useNewUrlParser: true }, (err, database) => {
   if (err) return console.log(err)
   db = database.db('examen')
+   mysort = { reason: 1 };
   app.listen(process.env.PORT || 3000, () => {
     console.log('Listening on port 3000')
   })
@@ -25,7 +27,7 @@ app.get('/', (req, res) => {
 
 // List all inhaalexamens
 app.get('/list', (req, res) => {
-  db.collection('inhaal').find().toArray((err, result) => {
+  db.collection('inhaal').find().sort(mysort).toArray((err, result) => {
     if (err) return console.log(err)
     res.render('list.ejs', { inhaal: result })
   })
