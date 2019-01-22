@@ -1,8 +1,3 @@
-# Repo for Zell's CRUD, Express and MongoDB tutorial
-
-- [Demo](https://crud-express-mongo.herokuapp.com)
-- [Tutorial](http://zell-weekeat.com/crud-express-mongodb)
-
 ## Installation
 
 1. Clone repo
