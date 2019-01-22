@@ -5,9 +5,9 @@ const MongoClient = require('mongodb').MongoClient
 
 var db;
 
-MongoClient.connect('mongodb://localhost:27017/products',  { useNewUrlParser: true }, (err, database) => {
+MongoClient.connect('mongodb://localhost:27017/inhaalexamens',  { useNewUrlParser: true }, (err, database) => {
   if (err) return console.log(err)
-  db = database.db('products')
+  db = database.db('inhaalexamens')
   app.listen(process.env.PORT || 3000, () => {
     console.log('Listening on port 3000')
   })
@@ -23,48 +23,23 @@ app.get('/', (req, res) => {
    res.redirect('/list')
 })
 
-// List all products
+// List all inhaalexamens
 app.get('/list', (req, res) => {
-  db.collection('products').find().toArray((err, result) => {
+  db.collection('inhaalexamens').find().toArray((err, result) => {
     if (err) return console.log(err)
-    res.render('list.ejs', { products: result })
+    res.render('list.ejs', { inhaalexamens: result })
   })
 })
 
-// Show the add product form
+// Show the add inhaalexamen form
 app.get('/add', (req, res) => {
    res.render('add.ejs', {})
 })
 
-// Add a product to the db
+// Add a inhaalexamen to the db
 app.post('/add', (req, res) => {
-  db.collection('products').insertOne(req.body, (err, result) => {
+  db.collection('inhaalexamens').insertOne(req.body, (err, result) => {
     if (err) return console.log(err)
      res.redirect('/list')
-  })
-})
-
-// Show the search form
-app.get('/search', (req, res) => {
-   res.render('search.ejs', { product: '' })
-})
-
-// Find a product
-app.post('/search', (req, res) => {
- var query = { name: req.body.name }
- db.collection('products').find(query).toArray(function(err, result) {
-   if (err) return console.log(err)
-   if (result == '')
-       res.render('search_not_found.ejs', {})
-   else
-       res.render('search_result.ejs', { product: result[0] })
- });
-})
-
-// Delete a product
-app.post('/delete', (req, res) => {
-  db.collection('products').findOneAndDelete({ name: req.body.name }, (err, result) => {
-    if (err) return res.send(500, err)
-    res.redirect('/list')
   })
 })
